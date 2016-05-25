@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 
-import com.yidd365.utility.ViewUtils;
+import com.yidd365.utility.ViewUtilitys;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -124,7 +124,7 @@ public abstract class SimpleRVBaseAdapter<T> extends RecyclerView.Adapter<Common
         }
         if (position > lastAnimatedPosition) {
             lastAnimatedPosition = position;
-            view.setTranslationY(ViewUtils.getScreenHeight(context));
+            view.setTranslationY(ViewUtilitys.getScreenHeight(context));
             view.animate()
                     .translationY(50)
                     .setStartDelay(100)
