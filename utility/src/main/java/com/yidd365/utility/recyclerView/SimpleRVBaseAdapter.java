@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Created by orinchen on 16/5/19.
  */
-public abstract class SimpleRVBaseAdapter<T, VT extends CommonRecyclerViewHolder> extends RecyclerView.Adapter<VT> {
+public abstract class SimpleRVBaseAdapter<T> extends RecyclerView.Adapter<CommonRecyclerViewHolder> {
     protected List<T> items;
     protected Context context;
     protected boolean enableAnimateItems = false;
@@ -35,7 +35,7 @@ public abstract class SimpleRVBaseAdapter<T, VT extends CommonRecyclerViewHolder
     }
 
     @Override
-    public VT onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CommonRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(getItemLayoutID(viewType), parent, false);
         CommonRecyclerViewHolder.OnItemViewClickListener listener = position -> {
@@ -45,10 +45,10 @@ public abstract class SimpleRVBaseAdapter<T, VT extends CommonRecyclerViewHolder
             SimpleRVBaseAdapter.this.onItemClickListener.onItemClicked(item);
         };
 
-        return this.createViewHolder(view, listener);
+        return new CommonRecyclerViewHolder(view, listener);
     }
     @Override
-    public void onBindViewHolder(VT holder, int position) {
+    public void onBindViewHolder(CommonRecyclerViewHolder holder, int position) {
         runEnterAnimation(holder.getItemView(), position);
         onBindDataToView(holder, items.get(position));
     }
@@ -58,9 +58,7 @@ public abstract class SimpleRVBaseAdapter<T, VT extends CommonRecyclerViewHolder
      * @param holder
      * @param bean
      */
-    protected abstract void onBindDataToView(VT holder, T bean);
-
-    protected abstract VT createViewHolder(View view, CommonRecyclerViewHolder.OnItemViewClickListener listener);
+    protected abstract void onBindDataToView(CommonRecyclerViewHolder holder, T bean);
 
     /**
      * 取得ItemView的布局文件

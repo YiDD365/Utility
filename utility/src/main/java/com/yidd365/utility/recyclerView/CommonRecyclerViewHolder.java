@@ -1,8 +1,10 @@
 package com.yidd365.utility.recyclerView;
 
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -47,19 +49,42 @@ public class CommonRecyclerViewHolder extends RecyclerView.ViewHolder {
         }
         return (T) view;
     }
-    public void setText(int viewId, String text) {
-        TextView tv = getView(viewId);
-        tv.setText(text);
-    }
 
     /**
      * 加载drawable中的图片
      * @param viewId
      * @param resId
      */
-    public void setImage(int viewId, int resId) {
+    public void setImageResource(int viewId, int resId) {
         ImageView iv = getView(viewId);
         iv.setImageResource(resId);
+    }
+
+    /**
+     * 为ImageView设置图片
+     *
+     * @param viewId
+     * @param bm
+     */
+    public void setImageBitmap(int viewId, Bitmap bm)
+    {
+        ImageView iv = getView(viewId);
+        iv.setImageBitmap(bm);
+    }
+
+    public void setText(int viewId, String text) {
+        TextView tv = getView(viewId);
+        tv.setText(text);
+    }
+
+    public void setSubViewOnClick(int viewId, View.OnClickListener listener){
+        View v = this.getItemView();
+        v.setOnClickListener(listener);
+    }
+
+    public void setButtonOnClick(int viewId, View.OnClickListener listener){
+        Button bt = this.getView(viewId);
+        bt.setOnClickListener(listener);
     }
 
     public interface OnItemViewClickListener
