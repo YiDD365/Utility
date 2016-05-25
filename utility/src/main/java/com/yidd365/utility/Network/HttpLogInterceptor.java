@@ -1,4 +1,4 @@
-package com.yidd365.utility.Network;
+package com.yidd365.utility.network;
 
 import com.yidd365.utility.ILogger;
 

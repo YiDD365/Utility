@@ -1,4 +1,4 @@
-package com.yidd365.utility.RecyclerViewAdapter;
+package com.yidd365.utility.recyclerView;
 
 import android.content.Context;
 import android.os.Handler;
