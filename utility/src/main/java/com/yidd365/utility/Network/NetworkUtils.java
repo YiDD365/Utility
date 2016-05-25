@@ -1,4 +1,4 @@
-package com.yidd365.utility;
+package com.yidd365.utility.Network;
 
 import android.content.Context;
 import android.content.pm.PackageManager;

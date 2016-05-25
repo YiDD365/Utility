@@ -5,9 +5,9 @@ import android.content.res.Resources;
 import android.util.DisplayMetrics;
 
 /**
- * Created by Neo on 16/5/24.
+ * Created by orinchen on 16/5/19.
  */
-public class ViewUtils {
+public final class ViewUtils {
     private static Integer width = null;
     private static Integer height = null;
     private ViewUtils(){}
