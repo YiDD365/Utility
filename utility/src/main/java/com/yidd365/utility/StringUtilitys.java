@@ -16,10 +16,47 @@ import java.util.regex.Pattern;
 public final class StringUtilitys {
     private StringUtilitys(){}
 
-    private final static Pattern emailer = Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
+    /**
+     * 校验E-Mail 地址
+     */
+    private final static String regexEmail =
+            "[\\w!#$%&'*+/=?^_`{|}~-]+(?:\\.[\\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\\w](?:[\\w-]*[\\w])?\\.)+[\\w](?:[\\w-]*[\\w])?";
+
+    private final static Pattern emailPattern = Pattern.compile(regexEmail);
+
+
+    /**
+     * 匹配 http/https/ftp 网址
+     */
+    private final static String regexWebAddress =
+            "(ht|f)(tps|tp)\\://([a-zA-Z0-9\\.\\-]+(\\:[a-zA-Z0-9\\.&amp;%\\$\\-]+)*@)*((25[0-5]|" +
+                    "2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\\.(25[0-5]|2[0-4][0-9]|" +
+                    "[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|" +
+                    "[1-9]{1}[0-9]{1}|[1-9]|0)\\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|" +
+                    "[0-9])|localhost|([a-zA-Z0-9\\-]+\\.)*[a-zA-Z0-9\\-]+\\." +
+                    "(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|" +
+                    "[a-zA-Z]{2}))(\\:[0-9]+)*(/($|[a-zA-Z0-9\\.\\,\\?\\'\\\\\\+&amp;%\\$#\\=~_\\-]+))*";
+
+    private final static Pattern webAddressPattern = Pattern.compile(regexWebAddress);
+
+
+    /**
+     * 校验日期，“yyyy-mm-dd“ 格式的日期校验，已考虑平闰年。
+     */
+    private final static String regexDate =
+            "^(?:(?!0000)[0-9]{4}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|" +
+                    "(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]" +
+                    "{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)$";
+
+    private final static Pattern datePattren= Pattern.compile(regexDate);
+
+
     private final static Pattern phone = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");
+
     private final static Pattern floatNumber = Pattern.compile("^-?([1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*|0?\\.0+|0)$");
     private final static Pattern integerNumber = Pattern.compile("^-?[1-9]\\d*$");
+
+
     private static final String regEx_script = "<script[^>]*?>[\\s\\S]*?<\\/script>"; // 定义script的正则表达式
     private static final String regEx_style = "<style[^>]*?>[\\s\\S]*?<\\/style>"; // 定义style的正则表达式
     private static final String regEx_html = "<[^>]+>"; // 定义HTML标签的正则表达式
@@ -82,7 +119,7 @@ public final class StringUtilitys {
     public static boolean isEmail(CharSequence email) {
         if (isEmpty(email))
             return false;
-        return emailer.matcher(email).matches();
+        return emailPattern.matcher(email).matches();
     }
 
     /**
