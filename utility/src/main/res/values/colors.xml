@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="primary">#03A9F4</color>
+    <color name="primary_dark">#0288D1</color>
+    <color name="primary_light">#B3E5FC</color>
+    <color name="accent">#00BCD4</color>
+    <color name="primary_text">#de000000</color>
+    <color name="secondary_text">#8a000000</color>
+    <color name="primary_text_inverse">#deFFFFFF</color>
+    <color name="secondary_text_inverse">#8aFFFFFF</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#B6B6B6</color>
+
+
+
+    <color name="transparent">#00000000</color>
+    <color name="white_75_transparent">#c0ffffff</color>
+    <color name="white_50_transparent">#80ffffff</color>
+    <color name="white_40_transparent">#60ffffff</color>
+    <color name="black">#000000</color>
+    <color name="black_75_transparent">#c0000000</color>
+    <color name="black_50_transparent">#80000000</color>
+    <color name="black_60_transparent">#a0000000</color>
+    <color name="black_30_transparent">#60000000</color>
+    <color name="black_20_transparent">#30000000</color>
+    <color name="black_40_transparent">#90000000</color>
+    <color name="black_00_transparent">#00000000</color>
+
+    <!-- app背景主色调 -->
+    <color name="app_background">#eeeff1</color>
+    <color name="app_basic">#f15c29</color>
+    <color name="app_basic_dark">#d44d2b</color>
+    <color name="app_basic_alpha">#99f95d36</color>
+    <color name="app_divider">#e3e4e5</color>
+    <color name="unselect_bar">#8c8c8c</color>
+    <color name="select_bar">#cc86d2</color>
+
+    <color name="blue">#64c6f2</color>
+    <color name="purple">#7d80c1</color>
+    <color name="purple_sign">#52559c</color>
+    <color name="white">#ffffff</color>
+    <color name="white_nearby">#d3dbf1</color>
+
+    <color name="red">#ff2424</color>
+    <color name="light_red">#f0a99f</color>
+    <color name="red_order">#f8684c</color>
+    <color name="red_captcha">#fb7435</color>
+    <color name="red_fa4623">#fa4623</color>
+    <color name="red_fd2a3e">#fd2a3e</color>
+
+    <color name="yellow">#fffe31</color>
+    <color name="yellow_sign">#f7a538</color>
+
+    <color name="green">#4BED90</color>
+    <color name="green_order">#57c149</color>
+
+    <color name="divider_gray">#e3e4e5</color>
+    <color name="dark_gray">#0f0f0f</color>
+    <color name="amount_gray">#8b8b8b</color>
+    <color name="light_gray">#434343</color>
+    <color name="unclickable_gray">#909090</color>
+    <color name="gray_date">#7c7c7c</color>
+    <color name="gray_order">#cecece</color>
+    <color name="gray_5f5f5f">#5f5f5f</color>
+    <color name="gray_40">#404040</color>
+    <color name="gray_7e">#7e7e7e</color>
+
+    <color name="index_list_gray">#F2F3F5</color>
+    <color name="index_text_selected">#fd5c0d</color>
+    <color name="index_text_unselected">#4e4e4e</color>
+
+    <color name="red_band">#fd2a2a</color>
+    <color name="green_band">#3b9f1b</color>
+    <color name="black_band">#434343</color>
+    <color name="grey_band">#afafaf</color>
+    <color name="orange_band">#fe7238</color>
+    <color name="yellow_band">#ffbb38</color>
+
+    <color name="welcome_title">#f2f1f1</color>
+    <color name="dark_text">#0f0f0f</color>
+</resources>

@@ -1,0 +1,81 @@
+<resources>
+    <style name="display4">
+        <item name="android:textSize">@dimen/display4_font_size</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/secondary_text</item>
+    </style>
+    <style name="display3">
+        <item name="android:textSize">@dimen/display3_font_size</item>
+        <item name="android:textColor">@color/secondary_text</item>
+    </style>
+    <style name="display2">
+        <item name="android:textSize">@dimen/display2_font_size</item>
+        <item name="android:textColor">@color/secondary_text</item>
+    </style>
+    <style name="display1">
+        <item name="android:textSize">@dimen/display1_font_size</item>
+        <item name="android:textColor">@color/secondary_text</item>
+    </style>
+
+    <style name="headline">
+        <item name="android:textSize">@dimen/headline_font_size</item>
+        <item name="android:textColor">@color/primary_text</item>
+    </style>
+
+    <style name="title">
+        <item name="android:textSize">@dimen/title_font_size</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/primary_text</item>
+    </style>
+
+    <style name="subhead">
+        <item name="android:textSize">@dimen/subhead_font_size</item>
+        <item name="android:textColor">@color/secondary_text</item>
+    </style>
+
+    <style name="body2">
+        <item name="android:textSize">@dimen/body2_font_size</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/primary_text</item>
+    </style>
+
+    <style name="body2_inverse">
+        <item name="android:textSize">@dimen/body2_font_size</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/primary_text_inverse</item>
+    </style>
+
+    <style name="body1">
+        <item name="android:textSize">@dimen/body1_font_size</item>
+        <item name="android:textColor">@color/secondary_text</item>
+    </style>
+    <style name="body1_inverse">
+        <item name="android:textSize">@dimen/body1_font_size</item>
+        <item name="android:textColor">@color/secondary_text_inverse</item>
+    </style>
+    <style name="caption">
+        <item name="android:textSize">@dimen/caption_font_size</item>
+        <item name="android:textColor">@color/secondary_text</item>
+    </style>
+
+    <style name="menu">
+        <item name="android:textSize">@dimen/menu_font_size</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/primary_text</item>
+    </style>
+
+    <style name="button">
+        <item name="android:textSize">@dimen/button_font_size</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/primary_text</item>
+    </style>
+
+    <style name="button_inverse">
+        <item name="android:textSize">@dimen/button_font_size</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/primary_text_inverse</item>
+    </style>
+
+
+
+</resources>
