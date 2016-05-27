@@ -20,11 +20,15 @@ public class LoadingFooter extends RelativeLayout implements RecyclerViewStateMa
     private View networkErrorView;
     private View endView;
     private View emptyView;
+    private View emptyWithErrorView;
 
-    private int loadingViewId = R.layout.layout_sample_footer_loading;
-    private int empytViewId  = R.layout.layout_sample_footer_empty;
+    private OnClickListener networkErrViewClickListener;
+
+    private int loadingViewId = R.layout.layout_simple_footer_loading;
+    private int empytViewId  = R.layout.layout_simple_footer_empty;
     private int netErrorViewId = R.layout.layout_simple_footer_network_error;
-    private int endViewId = R.layout.layout_sample_footer_end;
+    private int endViewId = R.layout.layout_simple_footer_end;
+    private int emptyAndErrorId = R.layout.layout_simple_footer_empty;
 
 
     public int getEndViewId() {
@@ -57,6 +61,23 @@ public class LoadingFooter extends RelativeLayout implements RecyclerViewStateMa
 
     public void setEndViewId(int endViewId) {
         this.endViewId = endViewId;
+    }
+
+    public int getEmptyAndErrorId() {
+        return emptyAndErrorId;
+    }
+
+    public void setEmptyAndErrorId(int emptyAndErrorId) {
+        this.emptyAndErrorId = emptyAndErrorId;
+    }
+
+
+    public OnClickListener getNetworkErrViewClickListener() {
+        return networkErrViewClickListener;
+    }
+
+    public void setNetworkErrViewClickListener(OnClickListener networkErrViewClickListener) {
+        this.networkErrViewClickListener = networkErrViewClickListener;
     }
 
     public LoadingFooter(Context context) {
@@ -97,7 +118,6 @@ public class LoadingFooter extends RelativeLayout implements RecyclerViewStateMa
         }
         mState = status;
 
-        this. setOnClickListener(null);
         if (loadingView != null) {
             loadingView.setVisibility(GONE);
         }
@@ -114,14 +134,20 @@ public class LoadingFooter extends RelativeLayout implements RecyclerViewStateMa
             emptyView.setVisibility(GONE);
         }
 
+        if (emptyWithErrorView != null){
+            emptyWithErrorView.setVisibility(GONE);
+        }
+
         switch (status) {
             case Loading:
+
                 if (loadingView == null) {
                     ViewStub viewStub = (ViewStub) findViewById(R.id.loading_viewstub);
                     viewStub.setLayoutResource(getLoadingViewId());
                     loadingView = viewStub.inflate();
                 }
                 loadingView.setVisibility(VISIBLE);
+
                 break;
             case TheEnd:
 
@@ -134,10 +160,12 @@ public class LoadingFooter extends RelativeLayout implements RecyclerViewStateMa
 
                 break;
             case NetWorkError:
+
                 if (networkErrorView == null) {
                     ViewStub viewStub = (ViewStub) findViewById(R.id.network_error_viewstub);
                     viewStub.setLayoutResource(this.getNetErrorViewId());
                     networkErrorView = viewStub.inflate();
+                    networkErrorView.setOnClickListener(this.networkErrViewClickListener);
                 }
                 networkErrorView.setVisibility(VISIBLE);
 
@@ -153,6 +181,15 @@ public class LoadingFooter extends RelativeLayout implements RecyclerViewStateMa
                 emptyView.setVisibility(VISIBLE);
 
                 break;
+
+            case NoDataWithError:
+
+                if(emptyWithErrorView == null){
+                    ViewStub viewStub = (ViewStub) findViewById(R.id.empty_err_viewstub);
+                    viewStub.setLayoutResource(this.getEmpytViewId());
+                    emptyWithErrorView = viewStub.inflate();
+                }
+                emptyWithErrorView.setVisibility(getVisibility());
 
             default: // Normal
 

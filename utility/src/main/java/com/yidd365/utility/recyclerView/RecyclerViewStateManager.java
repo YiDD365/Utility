@@ -6,8 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.yidd365.utility.recyclerView.HeaderAndFooterRecyclerViewAdapter;
-
 /**
  * Created by orinchen on 16/5/26.
  */
@@ -19,8 +17,8 @@ public class RecyclerViewStateManager {
     private IStateFooterView footerView;
     private View.OnClickListener onClickListener;
 
-    public RecyclerViewStateManager(@NonNull RecyclerView recyclerView,
-                                    @NonNull Activity activity){
+    public RecyclerViewStateManager( @NonNull Activity activity,
+                                     @NonNull RecyclerView recyclerView){
         this(activity, recyclerView, null);
     }
 
@@ -89,7 +87,12 @@ public class RecyclerViewStateManager {
     }
 
     public enum State {
-        Normal/**正常*/, TheEnd/**加载到最底了*/, Loading/**加载中..*/, NetWorkError/**网络异常*/, NoData
+        Normal/**正常*/,
+        TheEnd/**加载到最底了*/,
+        Loading/**加载中..*/,
+        NetWorkError/**网络异常*/,
+        NoData /**无数据*/,
+        NoDataWithError /**无数据并且网络异常*/,
     }
 
     interface IStateFooterView {

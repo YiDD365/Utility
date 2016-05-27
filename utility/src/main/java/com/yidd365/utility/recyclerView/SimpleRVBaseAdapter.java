@@ -50,7 +50,7 @@ public abstract class SimpleRVBaseAdapter<T> extends RecyclerView.Adapter<Common
     @Override
     public void onBindViewHolder(CommonRecyclerViewHolder holder, int position) {
         runEnterAnimation(holder.getItemView(), position);
-        onBindDataToView(holder, items.get(position));
+        onBindDataToView(holder, items.get(position), position);
     }
 
     /**
@@ -58,7 +58,7 @@ public abstract class SimpleRVBaseAdapter<T> extends RecyclerView.Adapter<Common
      * @param holder
      * @param bean
      */
-    protected abstract void onBindDataToView(CommonRecyclerViewHolder holder, T bean);
+    protected abstract void onBindDataToView(CommonRecyclerViewHolder holder, T bean, int position);
 
     /**
      * 取得ItemView的布局文件
