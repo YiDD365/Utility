@@ -28,7 +28,7 @@ public class LoadingFooter extends RelativeLayout implements RecyclerViewStateMa
     private int empytViewId  = R.layout.layout_simple_footer_empty;
     private int netErrorViewId = R.layout.layout_simple_footer_network_error;
     private int endViewId = R.layout.layout_simple_footer_end;
-    private int emptyAndErrorId = R.layout.layout_simple_footer_empty;
+    private int emptyAndErrorId = R.layout.layout_simple_footer_empty_error;
 
 
     public int getEndViewId() {

@@ -50,6 +50,11 @@ public class CommonRecyclerViewHolder extends RecyclerView.ViewHolder {
         return (T) view;
     }
 
+    public void setvisibility(int viewId, int visibility){
+        View v= this.getView(viewId);
+        v.setVisibility(visibility);
+    }
+
     /**
      * 加载drawable中的图片
      * @param viewId
