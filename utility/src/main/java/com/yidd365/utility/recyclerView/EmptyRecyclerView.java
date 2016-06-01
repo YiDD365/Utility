@@ -1,6 +1,7 @@
 package com.yidd365.utility.recyclerView;
 
 import android.content.Context;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
@@ -55,6 +56,13 @@ public class EmptyRecyclerView extends RecyclerView {
 
             emptyView.setVisibility(emptyViewVisible ? VISIBLE : GONE);
             setVisibility(emptyViewVisible ? GONE : VISIBLE);
+
+            if(this.getParent() instanceof SwipeRefreshLayout){
+                if(emptyViewVisible) {
+                    ((SwipeRefreshLayout) this.getParent()).setRefreshing(false);
+                }
+                ((SwipeRefreshLayout) this.getParent()).setVisibility(emptyViewVisible ? GONE : VISIBLE);
+            }
         }
     }
 
