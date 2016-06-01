@@ -2,7 +2,44 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@color/app_basic"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:text="加载数据"
+            android:id="@+id/load_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:text="清空数据"
+            android:id="@+id/no_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.yidd365.utility.recyclerView.EmptyRecyclerView
+            android:id="@+id/cook_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:choiceMode="singleChoice"
+            android:divider="@color/app_background"
+            android:fadingEdge="none"
+            android:listSelector="@android:color/transparent"
+            android:dividerHeight="1px"
+            android:scrollbarStyle="outsideOverlay"
+            android:scrollbars="none">
+        </com.yidd365.utility.recyclerView.EmptyRecyclerView>
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/empty_text_view"
+            android:text="Empyt View"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
 
 </LinearLayout>

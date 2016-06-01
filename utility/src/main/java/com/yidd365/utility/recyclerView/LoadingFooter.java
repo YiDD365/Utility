@@ -19,16 +19,12 @@ public class LoadingFooter extends RelativeLayout implements RecyclerViewStateMa
     private View loadingView;
     private View networkErrorView;
     private View endView;
-    private View emptyView;
-    private View emptyWithErrorView;
 
     private OnClickListener networkErrViewClickListener;
 
     private int loadingViewId = R.layout.layout_simple_footer_loading;
-    private int empytViewId  = R.layout.layout_simple_footer_empty;
     private int netErrorViewId = R.layout.layout_simple_footer_network_error;
     private int endViewId = R.layout.layout_simple_footer_end;
-    private int emptyAndErrorId = R.layout.layout_simple_footer_empty_error;
 
 
     public int getEndViewId() {
@@ -43,14 +39,6 @@ public class LoadingFooter extends RelativeLayout implements RecyclerViewStateMa
         this.loadingViewId = loadingViewId;
     }
 
-    public int getEmpytViewId() {
-        return empytViewId;
-    }
-
-    public void setEmpytViewId(int empytViewId) {
-        this.empytViewId = empytViewId;
-    }
-
     public int getNetErrorViewId() {
         return netErrorViewId;
     }
@@ -62,15 +50,6 @@ public class LoadingFooter extends RelativeLayout implements RecyclerViewStateMa
     public void setEndViewId(int endViewId) {
         this.endViewId = endViewId;
     }
-
-    public int getEmptyAndErrorId() {
-        return emptyAndErrorId;
-    }
-
-    public void setEmptyAndErrorId(int emptyAndErrorId) {
-        this.emptyAndErrorId = emptyAndErrorId;
-    }
-
 
     public OnClickListener getNetworkErrViewClickListener() {
         return networkErrViewClickListener;
@@ -130,14 +109,6 @@ public class LoadingFooter extends RelativeLayout implements RecyclerViewStateMa
             networkErrorView.setVisibility(GONE);
         }
 
-        if (emptyView != null){
-            emptyView.setVisibility(GONE);
-        }
-
-        if (emptyWithErrorView != null){
-            emptyWithErrorView.setVisibility(GONE);
-        }
-
         switch (status) {
             case Loading:
 
@@ -170,26 +141,6 @@ public class LoadingFooter extends RelativeLayout implements RecyclerViewStateMa
                 networkErrorView.setVisibility(VISIBLE);
 
                 break;
-
-            case NoData:
-
-                if (emptyView == null){
-                    ViewStub viewStub = (ViewStub) findViewById(R.id.empty_viewstub);
-                    viewStub.setLayoutResource(this.getEmpytViewId());
-                    emptyView = viewStub.inflate();
-                }
-                emptyView.setVisibility(VISIBLE);
-
-                break;
-
-            case NoDataWithError:
-
-                if(emptyWithErrorView == null){
-                    ViewStub viewStub = (ViewStub) findViewById(R.id.empty_err_viewstub);
-                    viewStub.setLayoutResource(this.getEmpytViewId());
-                    emptyWithErrorView = viewStub.inflate();
-                }
-                emptyWithErrorView.setVisibility(getVisibility());
 
             default: // Normal
 

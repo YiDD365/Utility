@@ -71,6 +71,7 @@ public class RecyclerViewStateManager {
                 this.footerView = new LoadingFooter(this.activity);
                 ((View)this.footerView).setOnClickListener(this.onClickListener);
             }
+
             headerAndFooterAdapter.addFooterView((View) footerView);
         }
 
@@ -90,9 +91,7 @@ public class RecyclerViewStateManager {
         Normal/**正常*/,
         TheEnd/**加载到最底了*/,
         Loading/**加载中..*/,
-        NetWorkError/**网络异常*/,
-        NoData /**无数据*/,
-        NoDataWithError /**无数据并且网络异常*/,
+        NetWorkError/**网络异常*/
     }
 
     interface IStateFooterView {

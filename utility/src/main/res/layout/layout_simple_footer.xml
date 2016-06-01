@@ -4,10 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center">
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="60dp"/>
-
     <ViewStub
         android:id="@+id/loading_viewstub"
         android:layout_width="match_parent"
@@ -21,14 +17,4 @@
         android:id="@+id/network_error_viewstub"
         android:layout_width="match_parent"
         android:layout_height="60dp" />
-
-    <ViewStub
-        android:id="@+id/empty_viewstub"
-        android:layout_width="match_parent"
-        android:layout_height="300dp" />
-
-    <ViewStub
-        android:id="@+id/empty_err_viewstub"
-        android:layout_width="match_parent"
-        android:layout_height="300dp" />
 </FrameLayout>
