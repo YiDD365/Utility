@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 
-import com.yidd365.utility.ViewUtilitys;
+import com.yidd365.utility.ViewUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -124,7 +124,7 @@ public abstract class SimpleRVBaseAdapter<T> extends RecyclerView.Adapter<Common
         }
         if (position > lastAnimatedPosition) {
             lastAnimatedPosition = position;
-            view.setTranslationY(ViewUtilitys.getScreenHeight(context));
+            view.setTranslationY(ViewUtils.getScreenHeight(context));
             view.animate()
                     .translationY(50)
                     .setStartDelay(100)
@@ -140,6 +140,7 @@ public abstract class SimpleRVBaseAdapter<T> extends RecyclerView.Adapter<Common
     }
 
     private void notifyDataSetChangedEx(){
+//        this.notifyDataSetChanged();
         Handler h = new Handler(Looper.getMainLooper());
         h.post(SimpleRVBaseAdapter.this::notifyDataSetChanged);
     }

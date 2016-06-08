@@ -13,8 +13,8 @@ import java.util.regex.Pattern;
 /**
  * Created by orinchen on 16/4/5.
  */
-public final class StringUtilitys {
-    private StringUtilitys(){}
+public final class StringUtils {
+    private StringUtils(){}
 
     /**
      * 校验E-Mail 地址

@@ -10,8 +10,8 @@ import java.util.Locale;
 /**
  * Created by orinchen on 16/4/5.
  */
-public final class DateUtilitys {
-    private DateUtilitys(){}
+public final class DateUtils {
+    private DateUtils(){}
 
     /** yyyy-MM-dd. */
     public static final String DATE_FORMAT_ONE = "yyyy-MM-dd";
@@ -132,7 +132,7 @@ public final class DateUtilitys {
      * @throws ParseException ParseException
      */
     public static Date getFormatDate(String strDate, String strFormat) throws ParseException {
-        if (StringUtilitys.isEmpty(strDate) || StringUtilitys.isEmpty(strFormat)) {
+        if (StringUtils.isEmpty(strDate) || StringUtils.isEmpty(strFormat)) {
             return null;
         }
 
@@ -438,7 +438,7 @@ public final class DateUtilitys {
             strDayOfWeek += "日";
             strEnDayOfWeek += "Sunday";
         }
-        if (StringUtilitys.isEmpty(strLangFlag)) {
+        if (StringUtils.isEmpty(strLangFlag)) {
             return strDayOfWeek;
         }
         return strEnDayOfWeek;
@@ -493,7 +493,7 @@ public final class DateUtilitys {
     public static String getCurrentDayOfWeek(Date date, String strLangFlag) {
         SimpleDateFormat sdf = null;
 
-        if (StringUtilitys.isEmpty(strLangFlag)) {
+        if (StringUtils.isEmpty(strLangFlag)) {
             sdf = new SimpleDateFormat(DATE_FORMAT_FORTY, Locale.CHINESE);
         } else {
             sdf = new SimpleDateFormat(DATE_FORMAT_THIRTY, Locale.ENGLISH);
@@ -876,7 +876,7 @@ public final class DateUtilitys {
      * @throws ParseException
      */
     public static Date string2Date(String date, String format) throws ParseException {
-        if(StringUtilitys.isEmpty(format)){
+        if(StringUtils.isEmpty(format)){
             format = DATE_FORMAT_ONE;
         }
         SimpleDateFormat sdf = new SimpleDateFormat(format);
@@ -891,7 +891,7 @@ public final class DateUtilitys {
      * @throws ParseException
      */
     public static Date stringToDate(String date, String format) throws ParseException {
-        if(StringUtilitys.isEmpty(format)){
+        if(StringUtils.isEmpty(format)){
             format = DATE_FORMAT_ONE;
         }
         SimpleDateFormat sdf = new SimpleDateFormat(format);
@@ -1098,11 +1098,11 @@ public final class DateUtilitys {
             return "";
         }
         String ftime = "";
-        long currTime = DateUtilitys.getTime();
+        long currTime = DateUtils.getTime();
         long paramTime = datetime.getTime();
         // 判断是否是同一天
-        String curDate = DateUtilitys.dateToString(new Date(), DateUtilitys.DATE_FORMAT_ONE);
-        String paramDate = DateUtilitys.dateToString(datetime, DateUtilitys.DATE_FORMAT_ONE);
+        String curDate = DateUtils.dateToString(new Date(), DateUtils.DATE_FORMAT_ONE);
+        String paramDate = DateUtils.dateToString(datetime, DateUtils.DATE_FORMAT_ONE);
         if (curDate.equals(paramDate)) {
             int hour = (int) ((currTime - paramTime) / 3600000);
             if (hour == 0) {
@@ -1129,7 +1129,7 @@ public final class DateUtilitys {
         } else if (days > 2 && days <= 10) {
             ftime = days + "天前";
         } else if (days > 10) {
-            ftime = DateUtilitys.dateToString(datetime, DateUtilitys.DATE_FORMAT_ONE);
+            ftime = DateUtils.dateToString(datetime, DateUtils.DATE_FORMAT_ONE);
         }
         return ftime;
     }
