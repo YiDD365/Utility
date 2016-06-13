@@ -93,31 +93,23 @@ public final class StringUtils {
         return htmlStr;
     }
 
-    /**
-     * 判断给定字符串是否空白串 空白串是指由空格、制表符、回车符、换行符组成的字符串 若输入字符串为null或空字符串，返回true
-     */
-    public static boolean isEmpty(CharSequence input) {
-        if (input == null || "".equals(input))
-            return true;
-
-        for (int i = 0; i < input.length(); i++) {
-            char c = input.charAt(i);
-            if (c != ' ' && c != '\t' && c != '\r' && c != '\n') {
-                return false;
-            }
-        }
-        return true;
-    }
-
     public static boolean isNullOrWhitespace(String input) {
         return input == null || input.trim().length()<1;
+    }
+
+    public static boolean isDateStr(CharSequence str){
+        return datePattren.matcher(str).matches();
+    }
+
+    public static boolean isWebAddress(String str){
+        return webAddressPattern.matcher(str).matches();
     }
 
     /**
      * 判断是不是一个合法的电子邮件地址
      */
-    public static boolean isEmail(CharSequence email) {
-        if (isEmpty(email))
+    public static boolean isEmail(String email) {
+        if (isNullOrWhitespace(email))
             return false;
         return emailPattern.matcher(email).matches();
     }
@@ -125,8 +117,8 @@ public final class StringUtils {
     /**
      * 判断是不是一个合法的手机号码
      */
-    public static boolean isPhone(CharSequence phoneNum) {
-        if (isEmpty(phoneNum))
+    public static boolean isPhone(String phoneNum) {
+        if (isNullOrWhitespace(phoneNum))
             return false;
         return phone.matcher(phoneNum).matches();
     }
@@ -191,7 +183,7 @@ public final class StringUtils {
     /**
      * 判断一个字符串是不是数字
      */
-    public static boolean isNumber(CharSequence sequence){
+    public static boolean isNumber(String sequence){
         return (isInteger(sequence) || isFloat(sequence));
     }
 
@@ -230,14 +222,14 @@ public final class StringUtils {
     }
 
 
-    public static boolean isFloat(CharSequence sequence) {
-        if (isEmpty(sequence))
+    public static boolean isFloat(String sequence) {
+        if (isNullOrWhitespace(sequence))
             return false;
         return floatNumber.matcher(sequence).matches();
     }
 
-    public static boolean isInteger(CharSequence sequence){
-        if (isEmpty(sequence))
+    public static boolean isInteger(String sequence){
+        if (isNullOrWhitespace(sequence))
             return false;
         return integerNumber.matcher(sequence).matches();
     }
@@ -250,21 +242,17 @@ public final class StringUtils {
         }
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-
+        String birthdayStr = "";
         if(sequence.length() == 15){
-            String birthdayStr = "19"+sequence.substring(6, 12);
-            try {
-                Date newDate = dateFormat.parse(birthdayStr);
-            } catch (ParseException e) {
-                return false;
-            }
+            birthdayStr = "19"+sequence.substring(6, 12);
         }else{
-            String birthdayStr = sequence.substring(6, 14);
-            try {
-                Date newDate = dateFormat.parse(birthdayStr);
-            } catch (ParseException e) {
-                return false;
-            }
+            birthdayStr = sequence.substring(6, 14);
+        }
+
+        try {
+            Date newDate = dateFormat.parse(birthdayStr);
+        } catch (ParseException e) {
+            return false;
         }
 
         int[] a = new int[]{7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};

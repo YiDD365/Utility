@@ -3,14 +3,16 @@ package com.yidd365.demo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.yidd365.utility.DateUtils;
 import com.yidd365.utility.recyclerView.EmptyRecyclerView;
 import com.yidd365.utility.recyclerView.EndlessRecyclerOnScrollListener;
 import com.yidd365.utility.recyclerView.HeaderAndFooterRecyclerViewAdapter;
 import com.yidd365.utility.recyclerView.RecyclerViewStateManager;
+
+import org.threeten.bp.LocalDateTime;
 
 import java.util.ArrayList;
 
@@ -18,6 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.yidd365.utility.recyclerView.RecyclerViewStateManager.State.Loading;
 import static com.yidd365.utility.recyclerView.RecyclerViewStateManager.State.Normal;
 import static com.yidd365.utility.recyclerView.RecyclerViewStateManager.State.TheEnd;
 
@@ -25,7 +28,6 @@ import static com.yidd365.utility.recyclerView.RecyclerViewStateManager.State.Th
  * Created by Neo on 16/5/24.
  */
 public class MainActivity  extends AppCompatActivity {
-
     @BindView(R.id.cook_list_view)
     protected EmptyRecyclerView recyclerView;
 
@@ -38,6 +40,7 @@ public class MainActivity  extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -53,6 +56,11 @@ public class MainActivity  extends AppCompatActivity {
             @Override
             public void onLoadNextPage(View view) {
                 super.onLoadNextPage(view);
+                RecyclerViewStateManager.State state = viewStateManager.getFooterViewState();
+                if(state == Loading || state == TheEnd) {
+                    return;
+                }
+                viewStateManager.setFooterViewState(Loading);
                 recyclerView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
