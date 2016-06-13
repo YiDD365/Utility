@@ -117,4 +117,16 @@ public final class Session {
     public<T> T get(String key, Type typeOfT){
         return KeyValueStore.getInstance().getObject(TABLE_NAME,key,typeOfT);
     }
+
+    public void delete(String key){
+        KeyValueStore.getInstance().delete(TABLE_NAME, key);
+    }
+
+    public void delete(String... ids){
+        KeyValueStore.getInstance().delete(TABLE_NAME, ids);
+    }
+
+    public void clear(){
+        KeyValueStore.getInstance().clearTable(TABLE_NAME);
+    }
 }

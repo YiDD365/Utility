@@ -334,7 +334,7 @@ public class KeyValueStore {
         this.db.delete(tableName, "id=?", new String[]{id});
     }
 
-    public void delete(String tableName, String[] ids){
+    public void delete(String tableName, String... ids){
         if(!checkTableName(tableName)){
             return;
         }
