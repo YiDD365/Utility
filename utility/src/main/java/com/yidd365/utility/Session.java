@@ -26,6 +26,10 @@ public final class Session {
         KeyValueStore.Initialize(context);
     }
 
+    public static Session getInstance(){
+        return SingletonHolder.instance;
+    }
+
     public void putString(String key, String str){
         KeyValueStore.getInstance().putString(TABLE_NAME, key, str);
     }
