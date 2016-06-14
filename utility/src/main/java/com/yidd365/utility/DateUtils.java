@@ -154,6 +154,10 @@ public final class DateUtils {
 
     public static DateTimeFormatter getFormatter(String pattern){
         DateTimeFormatter dateTimeFormatter = null;
+        if(formatters == null) {
+           formatters = new ArrayMap<>();
+        }
+
         if(!formatters.containsKey(pattern)){
             dateTimeFormatter = DateTimeFormatter.ofPattern(pattern);
             formatters.put(pattern, dateTimeFormatter);
