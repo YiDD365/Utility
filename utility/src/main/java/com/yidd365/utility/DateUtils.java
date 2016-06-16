@@ -1,5 +1,7 @@
 package com.yidd365.utility;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.ArrayMap;
 
 import org.threeten.bp.Instant;
@@ -29,126 +31,170 @@ public final class DateUtils {
 
     private static ArrayMap<String, DateTimeFormatter> formatters;
 
-    private DateUtils(){
-    }
+    private DateUtils(){}
 
-    public static long getEpochMilli(LocalDateTime ldt, String zoneId){
+    public static long getEpochMilli(@NonNull LocalDateTime ldt, @NonNull String zoneId){
+        assert ldt != null;
+        assert StringUtils.isNullOrWhitespace(zoneId);
+
         return ldt.toInstant(ZoneOffset.of(zoneId)).toEpochMilli();
     }
 
-    public static long getEpochMilli(LocalDateTime ldt){
+    public static long getEpochMilli(@NonNull LocalDateTime ldt){
+        assert ldt != null;
         return getEpochMilli(ldt, "Asia/Shanghai");
     }
 
-    public static LocalDateTime convertToLocalDateTime(Date date){
+    public static LocalDateTime convertToLocalDateTime(@NonNull Date date){
+        assert date != null;
         Instant instant = Instant.ofEpochMilli(date.getTime());
         LocalDateTime res = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
         return res;
     }
 
-    public static LocalDate convertToLocalDate(Date date){
+    public static LocalDate convertToLocalDate(@NonNull Date date){
+        assert date != null;
         Instant instant = Instant.ofEpochMilli(date.getTime());
         LocalDate res = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
         return res;
     }
 
-    public static LocalTime convertToLocalTime(Date date){
+    public static LocalTime convertToLocalTime(@NonNull Date date){
+        assert date != null;
         Instant instant = Instant.ofEpochMilli(date.getTime());
         LocalTime res = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalTime();
         return res;
     }
 
-    public static Date convertToDate(LocalDateTime ldt){
+    public static Date convertToDate(@NonNull LocalDateTime ldt){
+        assert ldt != null;
         Instant instant = ldt.atZone(ZoneId.systemDefault()).toInstant();
         Date res = new Date(instant.toEpochMilli());
         return res;
     }
 
-    public static Date converToDate(LocalDate ld){
+    public static Date converToDate(@NonNull LocalDate ld){
+        assert ld != null;
         Instant instant = ld.atStartOfDay(ZoneId.systemDefault()).toInstant();
         Date res = new Date(instant.toEpochMilli());
         return res;
     }
 
-    public static String formatDateTime(LocalDateTime ldt, String pattern){
+    public static String formatDateTime(@Nullable LocalDateTime ldt, @NonNull String pattern){
+        assert StringUtils.isNullOrWhitespace(pattern);
+        if(ldt == null)
+            return "";
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return ldt.format(formatter);
     }
 
-    public static String formatDateTime(Date date, String pattern){
+    public static String formatDateTime(@Nullable Date date, @NonNull String pattern){
+        assert StringUtils.isNullOrWhitespace(pattern);
+        if(date == null)
+            return "";
+
         return formatDateTime(convertToLocalDateTime(date), pattern);
     }
 
-    public static String formatDateTime(LocalDateTime ldt){
+    public static String formatDateTime(@Nullable LocalDateTime ldt){
         return formatDateTime(ldt, DEFAULT_DATE_TIME_FORMATTER_PATTERN);
     }
 
-    public static String formatDateTime(Date date){
+    public static String formatDateTime(@Nullable Date date){
         return formatDateTime(convertToLocalDateTime(date));
     }
 
-    public static String formatDate(LocalDate date, String pattern){
+    public static String formatDate(@Nullable LocalDate date, @NonNull String pattern){
+        assert StringUtils.isNullOrWhitespace(pattern);
+        if(date == null)
+            return "";
+
         DateTimeFormatter formatter = getFormatter(pattern);
         return date.format(formatter);
     }
 
-    public static String formatDate(Date date, String pattern){
+    public static String formatDate(@Nullable Date date, @NonNull String pattern){
+        assert StringUtils.isNullOrWhitespace(pattern);
+        if(date == null)
+            return "";
+
         return formatDate(convertToLocalDate(date), pattern);
     }
 
-    public static String formatDate(LocalDate date){
+    public static String formatDate(@Nullable LocalDate date){
         return formatDate(date, DEFAULT_DATE_FORMATTER_PATTERN);
     }
 
-    public static String formatDate(Date date) {
+    public static String formatDate(@NonNull Date date) {
         return formatDate(convertToLocalDate(date));
     }
 
-    public static String formatTime(LocalTime date, String pattern) {
+    public static String formatTime(@Nullable LocalTime time, @NonNull String pattern) {
+        assert StringUtils.isNullOrWhitespace(pattern);
+        if(time == null)
+            return "";
+
         DateTimeFormatter formatter = getFormatter(pattern);
-        return date.format(formatter);
+        return time.format(formatter);
     }
 
-    public static String formatTime(Date date, String pattern) {
+    public static String formatTime(@Nullable Date date, @NonNull String pattern) {
+        assert StringUtils.isNullOrWhitespace(pattern);
+        if(date == null)
+            return "";
+
         return formatTime(convertToLocalTime(date), pattern);
     }
 
-    public static String formatTime(LocalTime date) {
+    public static String formatTime(@Nullable LocalTime date) {
         return formatTime(date, DEFAULT_TIME_FORMATTER_PATTERN);
     }
 
-    public static String formatTime(Date date) {
+    public static String formatTime(@Nullable Date date) {
         return formatTime(convertToLocalTime(date));
     }
 
-    public static LocalDateTime fromDateTimeStr(String str, String pattern){
+    public static LocalDateTime fromDateTimeStr(@NonNull String str,@NonNull String pattern){
+        assert StringUtils.isNullOrWhitespace(str);
+        assert StringUtils.isNullOrWhitespace(pattern);
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return LocalDateTime.parse(str, formatter);
     }
 
-    public static LocalDateTime fromDateTimeStr(String str){
+    public static LocalDateTime fromDateTimeStr(@NonNull String str){
+        assert StringUtils.isNullOrWhitespace(str);
         return fromDateTimeStr(str, DEFAULT_DATE_TIME_FORMATTER_PATTERN);
     }
 
-    public static LocalDate fromDateStr(String str, String pattern){
+    public static LocalDate fromDateStr(@NonNull String str,@NonNull String pattern){
+        assert StringUtils.isNullOrWhitespace(str);
+        assert StringUtils.isNullOrWhitespace(pattern);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return LocalDate.parse(str, formatter);
     }
 
-    public static LocalDate fromDateStr(String str){
+    public static LocalDate fromDateStr(@NonNull String str){
+        assert StringUtils.isNullOrWhitespace(str);
         return fromDateStr(str, DEFAULT_DATE_FORMATTER_PATTERN);
     }
 
-    public static LocalTime fromTimeStr(String str, String pattern){
+    public static LocalTime fromTimeStr(@NonNull String str, @NonNull String pattern){
+        assert StringUtils.isNullOrWhitespace(str);
+        assert StringUtils.isNullOrWhitespace(pattern);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return LocalTime.parse(str, formatter);
     }
 
-    public static LocalTime fromTimeStr(String str){
+    public static LocalTime fromTimeStr(@NonNull String str){
+        assert StringUtils.isNullOrWhitespace(str);
         return fromTimeStr(str, DEFAULT_DATE_TIME_FORMATTER_PATTERN);
     }
 
-    public static String friendlyTime(Date date){
+    public static String friendlyTime(@Nullable Date date){
+        if(date == null)
+            return "";
         return friendlyTime(convertToLocalDateTime(date));
     }
 
@@ -178,7 +224,7 @@ public final class DateUtils {
      * @param ldt
      * @return
      */
-    public static String friendlyTime(LocalDateTime ldt) {
+    public static String friendlyTime(@Nullable LocalDateTime ldt) {
         if (ldt == null) {
             return "";
         }
