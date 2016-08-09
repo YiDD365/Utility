@@ -21,7 +21,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-import okhttp3.internal.http.HttpEngine;
 import okio.Buffer;
 import okio.BufferedSource;
 
@@ -217,7 +216,7 @@ public final class HttpLogInterceptor implements Interceptor {
                 }
             }
 
-            if (!logBody || !HttpEngine.hasBody(response)) {
+            if (!logBody || response.body() != null) {
                 logBuilder.append("<-- END HTTP\n");
             } else if (bodyEncoded(response.headers())) {
                 logBuilder.append("<-- END HTTP (encoded body omitted)\n");
