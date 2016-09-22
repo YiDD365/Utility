@@ -6,13 +6,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.TextView;
 
-import com.yidd365.utility.DateUtils;
 import com.yidd365.utility.recyclerView.EmptyRecyclerView;
 import com.yidd365.utility.recyclerView.EndlessRecyclerOnScrollListener;
 import com.yidd365.utility.recyclerView.HeaderAndFooterRecyclerViewAdapter;
 import com.yidd365.utility.recyclerView.RecyclerViewStateManager;
-
-import org.threeten.bp.LocalDateTime;
 
 import java.util.ArrayList;
 
