@@ -216,7 +216,7 @@ public final class HttpLogInterceptor implements Interceptor {
                 }
             }
 
-            if (!logBody || response.body() != null) {
+            if (!logBody || response.body() == null) {
                 logBuilder.append("<-- END HTTP\n");
             } else if (bodyEncoded(response.headers())) {
                 logBuilder.append("<-- END HTTP (encoded body omitted)\n");
@@ -241,15 +241,15 @@ public final class HttpLogInterceptor implements Interceptor {
                     logBuilder.append("Response Content:\n");
                     String content = buffer.clone().readString(charset).trim();
 
-                    if(responseContentType.equalsIgnoreCase("application/json")) {
+                    if(responseContentType.toLowerCase().contains("application/json")) {
                         try {
                             if (content.startsWith("{")) {
                                 JSONObject jsonObject = new JSONObject(content);
-                                content = jsonObject.toString(4);
+                                content = jsonObject.toString(2);
                             }
                             if (content.startsWith("[")) {
                                 JSONArray jsonArray = new JSONArray(content);
-                                content = jsonArray.toString(4);
+                                content = jsonArray.toString(2);
                             }
                         } catch (JSONException e) {
                         }

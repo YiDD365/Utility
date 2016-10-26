@@ -12,10 +12,16 @@ import com.yidd365.utility.recyclerView.HeaderAndFooterRecyclerViewAdapter;
 import com.yidd365.utility.recyclerView.RecyclerViewStateManager;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import rx.Observable;
+import rx.Subscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 import static com.yidd365.utility.recyclerView.RecyclerViewStateManager.State.Loading;
 import static com.yidd365.utility.recyclerView.RecyclerViewStateManager.State.Normal;
@@ -89,6 +95,30 @@ public class MainActivity  extends AppCompatActivity {
 
         adapter.bindData(datas);
         viewStateManager.setFooterViewState(Normal);
+
+        Observable<RESTResult<List<Enterprise>>> observable =
+            Networker.getInstance().fetchEnterprises("", null, 0, 10);
+        Subscription subscription =
+            observable
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Subscriber<RESTResult<List<Enterprise>>>() {
+                @Override
+                public void onCompleted() {
+
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+
+                @Override
+                public void onNext(RESTResult<List<Enterprise>> listRESTResult) {
+
+                }
+            });
     }
 
     @OnClick(R.id.no_data)
