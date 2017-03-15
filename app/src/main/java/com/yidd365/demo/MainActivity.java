@@ -3,6 +3,7 @@ package com.yidd365.demo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -104,7 +105,7 @@ public class MainActivity  extends AppCompatActivity {
                 .subscribe(new DisposableObserver<RESTResult<List<Enterprise>>>() {
                     @Override
                     public void onNext(RESTResult<List<Enterprise>> value) {
-
+                        Log.d("test", "test");
                     }
 
                     @Override
