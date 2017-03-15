@@ -4,10 +4,10 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
+import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
-import rx.Observable;
 
 /**
  * Created by orinchen on 2016/10/26.

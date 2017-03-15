@@ -9,11 +9,11 @@ import com.yidd365.utility.network.HttpLogInterceptor;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Observable;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.Observable;
 
 /**
  * Created by orinchen on 2016/10/26.
@@ -61,7 +61,7 @@ public final class Networker {
         .baseUrl(BaseURL)
         .client(okHttpClientBuilder.build())
         .addConverterFactory(GsonConverterFactory.create())
-        .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build();
 
     this.service = this.retrofit.create(WebService.class);

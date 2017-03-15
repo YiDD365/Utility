@@ -17,11 +17,10 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import rx.Observable;
-import rx.Subscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
 
 import static com.yidd365.utility.recyclerView.RecyclerViewStateManager.State.Loading;
 import static com.yidd365.utility.recyclerView.RecyclerViewStateManager.State.Normal;
@@ -96,29 +95,28 @@ public class MainActivity  extends AppCompatActivity {
         adapter.bindData(datas);
         viewStateManager.setFooterViewState(Normal);
 
-        Observable<RESTResult<List<Enterprise>>> observable =
-            Networker.getInstance().fetchEnterprises("", null, 0, 10);
-        Subscription subscription =
-            observable
+        Observable<RESTResult<List<Enterprise>>> observable = Networker.getInstance().fetchEnterprises("", null, 0, 10);
+
+        observable
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(new Subscriber<RESTResult<List<Enterprise>>>() {
-                @Override
-                public void onCompleted() {
+                .subscribe(new DisposableObserver<RESTResult<List<Enterprise>>>() {
+                    @Override
+                    public void onNext(RESTResult<List<Enterprise>> value) {
 
-                }
+                    }
 
-                @Override
-                public void onError(Throwable e) {
+                    @Override
+                    public void onError(Throwable e) {
 
-                }
+                    }
 
-                @Override
-                public void onNext(RESTResult<List<Enterprise>> listRESTResult) {
+                    @Override
+                    public void onComplete() {
 
-                }
-            });
+                    }
+                });
     }
 
     @OnClick(R.id.no_data)
