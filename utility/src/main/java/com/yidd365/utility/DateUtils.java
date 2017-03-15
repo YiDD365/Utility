@@ -2,7 +2,7 @@ package com.yidd365.utility;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.ArrayMap;
+import android.support.v4.util.ArrayMap;
 
 import org.threeten.bp.Instant;
 import org.threeten.bp.LocalDate;
@@ -201,7 +201,7 @@ public final class DateUtils {
     public static DateTimeFormatter getFormatter(String pattern){
         DateTimeFormatter dateTimeFormatter = null;
         if(formatters == null) {
-           formatters = new ArrayMap<>();
+           formatters = new android.support.v4.util.ArrayMap<>();
         }
 
         if(!formatters.containsKey(pattern)){
